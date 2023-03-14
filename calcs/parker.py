@@ -12,11 +12,13 @@ def shuffle_and_split_data(data, test_ratio):
     train_indices = shuffled_indices[test_set_size:]
     return data.iloc[train_indices], data.iloc[test_indices]
  
- 
+
+# Function that makes a dataset of randoms
 def is_id_in_test_set(identifier, test_ratio):
     return crc32(np.int64(identifier)) < test_ratio * 2**32
 
 
+# Function that makes a dataset of randoms
 def split_data_with_id_hash(data, test_ratio, id_column):
     ids = data[id_column]
     in_test_set = ids.apply(lambda id_: is_id_in_test_set(id_, test_ratio))
@@ -27,6 +29,3 @@ def split_data_with_id_hash(data, test_ratio, id_column):
 def scatter_matrix(data):
     pd.plotting.scatter_matrix(data, alpha=0.2, figsize=(12, 12), diagonal='kde')
     plt.show()
-
-
-
