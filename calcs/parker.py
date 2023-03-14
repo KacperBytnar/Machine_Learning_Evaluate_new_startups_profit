@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib as plt
 import numpy as np
+from zlib import crc32
 
 
 # Function that makes a dataset of randoms
@@ -20,3 +21,12 @@ def split_data_with_id_hash(data, test_ratio, id_column):
     ids = data[id_column]
     in_test_set = ids.apply(lambda id_: is_id_in_test_set(id_, test_ratio))
     return data.loc[~in_test_set], data.loc[in_test_set]
+
+
+# Function that makes a sctter matrix plot
+def scatter_matrix(data):
+    pd.plotting.scatter_matrix(data, alpha=0.2, figsize=(12, 12), diagonal='kde')
+    plt.show()
+
+
+
