@@ -24,13 +24,11 @@ def is_id_in_test_set(identifier, test_ratio):
 
 
 # Function that makes a dataset of randoms
-
-from zlib import crc32 
-
 def is_id_in_test_set(identifier, test_ratio):
     return crc32(np.int64(identifier)) < test_ratio * 2**32
 
 
+# Function that makes a dataset of randoms
 def split_data_with_id_hash(data, test_ratio, id_column):
     ids = data[id_column]
     in_test_set = ids.apply(lambda id_: is_id_in_test_set(id_, test_ratio))
@@ -42,6 +40,8 @@ def scatter_matrix(data):
     pd.plotting.scatter_matrix(data, alpha=0.2, figsize=(12, 12), diagonal='kde')
     plt.show()
 
+
+# Function that makes a dataset of randoms
 def split_data_with_id_hash(data, test_ratio, id_column):
     ids = data[id_column]
     in_test_set = ids.apply(lambda id_: is_id_in_test_set(id_, test_ratio))
