@@ -16,6 +16,7 @@ def shuffle_and_split_data(data, test_ratio):
     return data.iloc[train_indices], data.iloc[test_indices]
  
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 # Function that makes a dataset of randoms
 =======
@@ -27,6 +28,13 @@ def is_id_in_test_set(identifier, test_ratio):
 
 <<<<<<< HEAD
 # Function that makes a dataset of randoms
+=======
+from zlib import crc32 
+
+def is_id_in_test_set(identifier, test_ratio):
+    return crc32(np.int64(identifier)) < test_ratio * 2**32
+
+>>>>>>> 8a9e7d6 (One Hot Encoder implemented)
 def split_data_with_id_hash(data, test_ratio, id_column):
     ids = data[id_column]
     in_test_set = ids.apply(lambda id_: is_id_in_test_set(id_, test_ratio))
